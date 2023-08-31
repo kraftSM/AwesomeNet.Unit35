@@ -17,3 +17,4 @@
   + + Entity Framework Core 5.0.17
   + + Entity Framework CoreSqlServer  5.0.17
     + начальные шаги до  Задание 43.3.4
+    + добавлена строка подключения в appsettings.json
