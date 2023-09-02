@@ -31,15 +31,14 @@ namespace AwesomeNet.Unit35.Controllers
 
         [Route("RegisterPart2")]
         [HttpGet]
-        public IActionResult RegisterPart2(ViewModels.Account.RegisterViewModel model)
+        public IActionResult RegisterPart2(RegisterViewModel model)
         {
             return View("RegisterPart2", model);
         }
 
         [Route("Register")]
         [HttpPost]
-        public async Task<IActionResult> Register(ViewModels.Account.RegisterViewModel model)
-        //public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
