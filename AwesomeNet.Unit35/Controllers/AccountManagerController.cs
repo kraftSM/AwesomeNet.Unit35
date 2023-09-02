@@ -12,7 +12,6 @@ using AwesomeNet.Unit35.Data;
 using AwesomeNet.Unit35.Data.Repository;
 using AwesomeNet.Unit35.Data.UnitOfWork;
 
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -23,21 +22,30 @@ namespace AwesomeNet.Unit35.Controllers
     public class AccountManagerController : Controller
     {
         private IMapper _mapper;
+        private IUnitOfWork _unitOfWork;
 
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
 
-        public AccountManagerController(UserManager<User> userManager, SignInManager<User> signInManager, IMapper mapper)
+        public AccountManagerController(UserManager<User> userManager, SignInManager<User> signInManager, IMapper mapper, UnitOfWork unitOfWork)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
+        //public AccountManagerController(UserManager<User> userManager, SignInManager<User> signInManager, UnitOfWork unitOfWork)
+        //{
+        //    _userManager = userManager;
+        //    _signInManager = signInManager;
+        //    _unitOfWork = unitOfWork;
+        //}
         //public AccountManagerController(UserManager<User> userManager, SignInManager<User> signInManager)
         //{
         //    _userManager = userManager;
         //    _signInManager = signInManager;
+
         //}
 
         //[Route("Login")]

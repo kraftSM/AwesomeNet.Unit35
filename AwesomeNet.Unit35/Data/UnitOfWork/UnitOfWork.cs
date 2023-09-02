@@ -20,7 +20,6 @@ namespace AwesomeNet.Unit35.Data.UnitOfWork
 
         public void Dispose()
         {
-
         }
 
         public IRepository<TEntity> GetRepository<TEntity>(bool hasCustomRepository = true) where TEntity : class

@@ -4,6 +4,7 @@ using AwesomeNet.Unit35.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using AutoMapper;
+using AwesomeNet.Unit35.Data.UnitOfWork;
 
 namespace AwesomeNet.Unit35.Controllers
 {
@@ -13,6 +14,12 @@ namespace AwesomeNet.Unit35.Controllers
 
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        public RegisterController(UserManager<User> userManager, SignInManager<User> signInManager, IMapper mapper)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _mapper = mapper;
+        }
 
         [Route("Register")]
         [HttpGet]
@@ -31,7 +38,8 @@ namespace AwesomeNet.Unit35.Controllers
 
         [Route("Register")]
         [HttpPost]
-        public async Task<IActionResult> Register(ViewModels.Account.RegisterViewModel model)
+        //public async Task<IActionResult> Register(ViewModels.Account.RegisterViewModel model)
+        public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
