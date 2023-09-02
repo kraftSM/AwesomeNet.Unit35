@@ -27,34 +27,13 @@ namespace AwesomeNet.Unit35.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
 
-        public AccountManagerController(UserManager<User> userManager, SignInManager<User> signInManager, IMapper mapper, UnitOfWork unitOfWork)
+        public AccountManagerController(UserManager<User> userManager, SignInManager<User> signInManager, IMapper mapper, IUnitOfWork unitOfWork)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _mapper = mapper;
             _unitOfWork = unitOfWork;
         }
-
-        //public AccountManagerController(UserManager<User> userManager, SignInManager<User> signInManager, UnitOfWork unitOfWork)
-        //{
-        //    _userManager = userManager;
-        //    _signInManager = signInManager;
-        //    _unitOfWork = unitOfWork;
-        //}
-        //public AccountManagerController(UserManager<User> userManager, SignInManager<User> signInManager)
-        //{
-        //    _userManager = userManager;
-        //    _signInManager = signInManager;
-
-        //}
-
-        //[Route("Login")]
-        //[HttpGet]
-        //public IActionResult Login()
-        //{
-        //    //return View("Home/Login");
-        //    return View("Login");
-        //}
 
         [Route("Login")]
         [HttpGet]

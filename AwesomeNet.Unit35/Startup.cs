@@ -16,6 +16,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using AutoMapper;
 
+using AwesomeNet.Unit35.Extensions;
 using AwesomeNet.Unit35.Models;
 using AwesomeNet.Unit35.Data;
 using AwesomeNet.Unit35.Data.UnitOfWork;

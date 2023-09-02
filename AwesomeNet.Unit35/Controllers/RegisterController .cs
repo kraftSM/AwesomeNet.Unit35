@@ -38,8 +38,8 @@ namespace AwesomeNet.Unit35.Controllers
 
         [Route("Register")]
         [HttpPost]
-        //public async Task<IActionResult> Register(ViewModels.Account.RegisterViewModel model)
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> Register(ViewModels.Account.RegisterViewModel model)
+        //public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
