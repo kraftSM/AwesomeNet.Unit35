@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="text-color-gray text-size_12">Дата рождения</div>
-        <div class="mrgn center">
+       @* <div class="mrgn center">
             <select asp-for="Date" class="form-control date_control" ID="ddlDay">
                 <option value="">@Model.Date</option>
             </select>
@@ -45,14 +45,14 @@
             </select>
             <span asp-validation-for="Year" class="text-danger"></span>
 
-        </div>
+        </div>*@
 
         <div class="center">
             <input class="btn_submit" type="submit" value="Продолжить регистрацию" />
         </div>
     </form>
 
-    @Model.Month
+   @* @Model.Month*@
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
 

@@ -55,8 +55,8 @@ namespace AwesomeNet.Unit35.ViewModels.Account
 
         [Required]
         [Display(Name = "Login")]
-        //public string Login { get; set; }
-        public string Login => EmailReg;
+        public string Login { get; set; }
+        //public string Login => EmailReg;
 
     }
 

@@ -34,48 +34,56 @@ namespace AwesomeNet.Unit35.Controllers
             _mapper = mapper;
         }
 
-        [Route("Login")]
-        [HttpGet]
-        public IActionResult Login()
-        {
-            return View("Home/Login");
-        }
+        //public AccountManagerController(UserManager<User> userManager, SignInManager<User> signInManager)
+        //{
+        //    _userManager = userManager;
+        //    _signInManager = signInManager;
+        //}
 
+        //[Route("Login")]
+        //[HttpGet]
+        //public IActionResult Login()
+        //{
+        //    //return View("Home/Login");
+        //    return View("Login");
+        //}
+
+        [Route("Login")]
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
             return View(new LoginViewModel { ReturnUrl = returnUrl });
         }
 
-        //[Route("Login")]
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Login(LoginViewModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
+        [Route("Login")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
 
-        //        var user = _mapper.Map<User>(model);
+                var user = _mapper.Map<User>(model);
 
-        //        var result = await _signInManager.PasswordSignInAsync(user.Email, model.Password, model.RememberMe, false);
-        //        if (result.Succeeded)
-        //        {
-        //            if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
-        //            {
-        //                return Redirect(model.ReturnUrl);
-        //            }
-        //            else
-        //            {
-        //                return RedirectToAction("Index", "Home");
-        //            }
-        //        }
-        //        else
-        //        {
-        //            ModelState.AddModelError("", "Неправильный логин и (или) пароль");
-        //        }
-        //    }
-        //    return View("Views/Home/Index.cshtml");
-        //}
+                var result = await _signInManager.PasswordSignInAsync(user.Email, model.Password, model.RememberMe, false);
+                if (result.Succeeded)
+                {
+                    if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
+                    {
+                        return Redirect(model.ReturnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Неправильный логин и (или) пароль");
+                }
+            }
+            return View("Views/Home/Index.cshtml");
+        }
 
 
 

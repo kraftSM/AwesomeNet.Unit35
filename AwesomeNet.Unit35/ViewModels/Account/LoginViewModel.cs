@@ -22,7 +22,7 @@ namespace AwesomeNet.Unit35.ViewModels.Account
         [Display(Name = "Пароль", Prompt = "Введите пароль")]
         public string Password { get; set; }
 
-        [Display(Name = "SAve?")]
+        [Display(Name = "Remember Me?")]
         public bool RememberMe { get; set; }
 
         public string ReturnUrl { get; set; }

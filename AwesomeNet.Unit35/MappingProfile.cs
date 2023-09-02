@@ -17,7 +17,8 @@ namespace AwesomeNet.Unit35
                 .ForMember(x => x.Email, opt => opt.MapFrom(c => c.EmailReg))
                 .ForMember(x => x.UserName, opt => opt.MapFrom(c => c.Login));
             CreateMap<LoginViewModel, User>();
-            
+            //CreateMap<LoginViewModel, User>()
+            //.ForMember(x => x.Email, opt => opt.MapFrom(c => c.Email));
         }
     }
 }
