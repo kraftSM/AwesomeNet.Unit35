@@ -14,6 +14,15 @@ namespace AwesomeNet.Unit35.Models
         public string Image { get; set; }
         public string Status { get; set; }
         public string Info { get; set; }
-        
+        public string GetFullName()
+        {
+            return " UserFullName: " + FirstName + " " + MiddleName + " " + LastName;
+        }
+        public User()
+        {
+            Image = "img/husky_400.png"; //Husky :)
+            Status = "Ура! Я в соцсети!";
+            Info = "Информация обо мне.";
+        }
     }
 }

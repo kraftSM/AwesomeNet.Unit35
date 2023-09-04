@@ -19,7 +19,8 @@ namespace AwesomeNet.Unit35.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        [Route("")]
+        [Route("[controller]/[action]")]        public IActionResult Index()
         {
             //return View();
             return View(new MainViewModel());

@@ -42,6 +42,17 @@ namespace AwesomeNet.Unit35.Controllers
             return View(new LoginViewModel { ReturnUrl = returnUrl });
         }
 
+        [Authorize]
+        [Route("MyPage")]
+        [HttpGet]
+        public async Task<IActionResult> MyPage()
+        {
+            var user = User;
+            var infoAboutUser = await _userManager.GetUserAsync(user);
+
+            var model = new UserViewModel(infoAboutUser);         
+            return View("User", model);
+        }
         [Route("Login")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -55,14 +66,17 @@ namespace AwesomeNet.Unit35.Controllers
                 var result = await _signInManager.PasswordSignInAsync(user.Email, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
                 {
-                    if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
-                    {
-                        return Redirect(model.ReturnUrl);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                    //return RedirectToAction("Index", "Home");
+                    return RedirectToAction("MyPage", "AccountManager"); 
+
+                    //if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
+                    //{
+                    //    return Redirect(model.ReturnUrl);
+                    //}
+                    //else
+                    //{
+                    //    return RedirectToAction("Index", "Home");
+                    //}
                 }
                 else
                 {

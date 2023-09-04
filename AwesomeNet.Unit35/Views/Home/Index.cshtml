@@ -12,17 +12,17 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <div>Hello @User.Identity!</div>
+    //редирект
+    @*ViewData["Title"] = "MyPage";*@
 }
 else
 {
-
-
     <div class="row">
         <div class="side">
             <div class="center">
                 Пользуйтесь нашей самой крутой соцсетью! Регистрируйтесь всего за 2 минуты, делитесь мыслями, находите новых друзей.
             </div>
-            <img class="main-img" src="./img/husky_400.png" />@* *@
+            <img class="main-img" src="/img/husky_400.png" />@* *@
         </div>
 
     <div class="main">
