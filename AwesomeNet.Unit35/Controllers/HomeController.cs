@@ -1,4 +1,5 @@
 ﻿using AwesomeNet.Unit35.Models;
+using AwesomeNet.Unit35.ViewModels.Account;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -20,7 +21,8 @@ namespace AwesomeNet.Unit35.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            //return View();
+            return View(new MainViewModel());
         }
 
         public IActionResult Privacy()
