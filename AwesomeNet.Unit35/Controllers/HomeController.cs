@@ -21,9 +21,9 @@ namespace AwesomeNet.Unit35.Controllers
 
 
         [Route("")]
-        //[Route("[controller]/[action]")]
-        public IActionResult Index()
+        [Route("[controller]/[action]")]        public IActionResult Index()
         {
+
             return View(new MainViewModel());
         }
 

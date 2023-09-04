@@ -1,4 +1,4 @@
-﻿using AwesomeNet.Unit35.Models;
+using AwesomeNet.Unit35.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +11,9 @@ namespace AwesomeNet.Unit35.Data.Repository
         {
 
         }
-
-
         public void AddFriend(User target, User Friend)
         {
             var friends = Set.AsEnumerable().FirstOrDefault(x => x.UserId == target.Id && x.CurrentFriendId == Friend.Id);
-
             if (friends == null)
             {
                 var item = new Friend()
@@ -37,6 +34,7 @@ namespace AwesomeNet.Unit35.Data.Repository
 
             return friends.ToList();
         }
+
 
 
         public void DeleteFriend(User target, User Friend)

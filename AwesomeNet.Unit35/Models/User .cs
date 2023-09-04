@@ -27,6 +27,5 @@ namespace AwesomeNet.Unit35.Models
         {
             return FirstName + " " + MiddleName + " " + LastName;
         }
-        
     }
 }
