@@ -1,4 +1,5 @@
 ﻿using AwesomeNet.Unit35.Models;
+using AwesomeNet.Unit35.ViewModels.Account;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -18,9 +19,12 @@ namespace AwesomeNet.Unit35.Controllers
             _logger = logger;
         }
 
+
+        [Route("")]
+        //[Route("[controller]/[action]")]
         public IActionResult Index()
         {
-            return View();
+            return View(new MainViewModel());
         }
 
         public IActionResult Privacy()

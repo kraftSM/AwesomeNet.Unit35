@@ -15,7 +15,7 @@ using AwesomeNet.Unit35.Data.UnitOfWork;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-
+using AwesomeNet.Unit35.Extensions;
 
 namespace AwesomeNet.Unit35.Controllers
 {
@@ -55,14 +55,15 @@ namespace AwesomeNet.Unit35.Controllers
                 var result = await _signInManager.PasswordSignInAsync(user.Email, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
                 {
-                    if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
-                    {
-                        return Redirect(model.ReturnUrl);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                    return RedirectToAction("UserPage", "AccountManager");
+                    //if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
+                    //{
+                    //    return Redirect(model.ReturnUrl);
+                    //}
+                    //else
+                    //{
+                    //    return RedirectToAction("Index", "Home");
+                    //}
                 }
                 else
                 {
@@ -81,6 +82,174 @@ namespace AwesomeNet.Unit35.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        ///<summary>
+        ///метод для вызова страницы пользователя
+        ///<summary>
+        ///
+
+        [Authorize]
+        [Route("UserPage")]
+        [HttpGet]
+        public async Task<IActionResult> UserPage()
+        {
+            var user = User;
+
+            var result = await _userManager.GetUserAsync(user);
+
+            var model = new UserViewModel(result);
+
+            model.Friends = await GetAllFriend(model.user);
+
+            return View("User", model);
+        }
+
+        [Route("EditUser")]
+        [HttpGet]
+        public IActionResult EditUser(EditUserViewModel editUserView)
+        {
+            
+            return View(editUserView);
+        }
+
+        [Authorize]
+        [Route("Update")]
+        [HttpPost]
+        public async Task<IActionResult> Update(EditUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByIdAsync(model.UserId);
+
+                user.Convert(model);
+
+                var result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("UserPage", "AccountManager");
+                }
+                else
+                {
+                    return RedirectToAction("EditUser", "AccountManager");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Некорректные данные");
+                return View("EditUser", model);
+            }
+        }
+
+
+        /// <summary>
+        /// Метод для подключения поиска пользователей
+        /// </summary>
+        [Route("UserList")]
+        [HttpPost]
+        public async Task<IActionResult> UserList(string search)
+        {
+            var model = await CreateSearch(search);
+            return View("UserList", model);
+        }
+
+        [Route("AddFriend")]
+        [HttpPost]
+        public async Task<IActionResult> AddFriend(string id)
+        {
+            var currentuser = User;
+
+            var result = await _userManager.GetUserAsync(currentuser);
+
+            var friend = await _userManager.FindByIdAsync(id);
+
+            var repository = _unitOfWork.GetRepository<Friend>() as FriendsRepository;
+
+            repository.AddFriend(result, friend);
+
+
+            return RedirectToAction("UserPage", "AccountManager");
+        }
+
+
+        [Route("DeleteFriend")]
+        [HttpPost]
+        public async Task<IActionResult> DeleteFriend(string id)
+        {
+            var currentuser = User;
+
+            var result = await _userManager.GetUserAsync(currentuser);
+
+            var friend = await _userManager.FindByIdAsync(id);
+
+            var repository = _unitOfWork.GetRepository<Friend>() as FriendsRepository;
+
+            repository.DeleteFriend(result, friend);
+
+            return RedirectToAction("UserPage", "AccountManager");
+
+        }
+
+        private async Task<SearchViewModel> CreateSearch(string search)
+        {
+            var currentuser = User;
+
+            var result = await _userManager.GetUserAsync(currentuser);
+
+            var list = _userManager.Users.AsEnumerable().Where(x => x.GetFullName().ToLower().Contains(search.ToLower())).ToList();
+            var withfriend = await GetAllFriend();
+
+            var data = new List<UserWithFriendExt>();
+            list.ForEach(x =>
+            {
+                var t = _mapper.Map<UserWithFriendExt>(x);
+                t.IsFriendWithCurrent = withfriend.Where(y => y.Id == x.Id || x.Id == result.Id).Count() != 0;
+                data.Add(t);
+            });
+
+            var model = new SearchViewModel()
+            {
+                UserList = data
+            };
+
+            return model;
+        }
+
+        private async Task<List<User>> GetAllFriend(User user)
+        {
+            var repository = _unitOfWork.GetRepository<Friend>() as FriendsRepository;
+
+            return repository.GetFriendsByUser(user);
+        }
+
+        private async Task<List<User>> GetAllFriend()
+        {
+            var user = User;
+
+            var result = await _userManager.GetUserAsync(user);
+
+            var repository = _unitOfWork.GetRepository<Friend>() as FriendsRepository;
+
+            return repository.GetFriendsByUser(result);
+        }
+
+        public UserViewModel RandUser()
+        {
+            User user = new User();
+            
+            Random rRand = new Random();
+            string[] firstName = { "Ава", "Августа", "Галина", "Дарья", "Елена", "Зоя", "Камилла", "Лана", "Марина", "Олеся" };
+            string[] lastName = { "Иванова", "Сергеева", "Петрова", "Щукина", "Листьева", "Головкова", "Сидельникова", "Разумова", "Головач", "Титова" };
+            string[] middleName = { "Сергеевна", "Петровна", "Григорьевна", "Кирилловна", "Алексеевна", "Александровна", "Борисовна", "Аркадьевна", "Семёновна", "Дмитриевна" };
+
+            user.FirstName = $"{firstName[rRand.Next(0, middleName.Length - 1)]}";
+            user.MiddleName = $"{middleName[rRand.Next(middleName.Length - 1, 9)]}";
+            user.LastName = $"{lastName[rRand.Next(0, middleName.Length - 1)]}";
+            user.BirthDate = DateTime.Now;
+            user.eMail = "наДеревнюКДедушке@mail.ru";
+            UserViewModel userVM = new UserViewModel(user);
+
+            return userVM;
         }
     }
 }

@@ -1,8 +1,9 @@
-﻿using AwesomeNet.Unit35.Models;
+﻿using AwesomeNet.Unit35.Configs;
+using AwesomeNet.Unit35.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using DbContext = Microsoft.EntityFrameworkCore.DbContext;
+
 
 namespace AwesomeNet.Unit35.Data
 {
@@ -11,13 +12,14 @@ namespace AwesomeNet.Unit35.Data
         public DbSet<User> Users { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            //Database.EnsureCreated(); 
+            Database.EnsureCreated(); 
             Database.Migrate();
 
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.ApplyConfiguration(new FriendConfiguration());
         }
     }
 }

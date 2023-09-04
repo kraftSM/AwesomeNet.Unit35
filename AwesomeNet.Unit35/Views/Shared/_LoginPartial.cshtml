@@ -3,31 +3,24 @@
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
-    @if (SignInManager.IsSignedIn(User))
-    {
-    @**@
-        <li class="nav-item">
-        <a >Вы вошли в AwesomNet</a>
-        </li>
-    <li class="nav-item">
-        <a> ***** </a>
-    </li> @**@
+@if (SignInManager.IsSignedIn(User))
+{
     <form method="post" asp-controller="AccountManager" asp-action="Logout">
-            <input class="enter_submit" type="submit" value="Выход" />
-        </form>
-    }
-    else
-    {
-        
-        @*
+        <input class="enter_submit" type="submit" value="Выход" />
+    </form>
+}
+else
+{
+
+    @*
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-        </li>*@
-        <li class="nav-item">
+        </li>
+    <li class="nav-item">
         <a class="nav-link text-dark" asp-area="" asp-controller="AccountManager" asp-action="Login">Login</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="RegisterPart2">Registering Form</a>
-        </li>
-    }
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="RegisterPart2">Registering Form</a>
+    </li>*@
+}
 

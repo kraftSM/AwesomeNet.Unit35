@@ -1,0 +1,112 @@
+﻿@model AwesomeNet.Unit35.ViewModels.Account.UserViewModel;
+@{
+    ViewData["Title"] = "Страница пользователя";
+    Layout = null; //отключение стилей мастер-страниц, и теперь можно лепить свой дизайн.
+                   //Layout = "~/Views/Shared/_Layout.cshtml";-тогда будет дизай мастер страницы.
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/main-page.css" />
+    <link rel="stylesheet" href="~/css/user-page.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AwesomeNet.Unit35</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <div backgroundColor="Blue">
+                        <h3>Это страница пользователя</h3>
+                        <h1>@Model.user.GetFullName()</h1>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div id="body" class="container">
+
+        <div id="left" class="">
+            <div id="divPhotoAndEditButton">
+                <div id="divPhoto">
+                    <img src=""/>
+                    Ваше фото
+                </div>
+                <div id="button">
+                    <form>
+                        <button method="get" type="submit" class="enter_submit" asp-controller="AccountManager" asp-action="EditUser">Редактировать</button>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+        <div id="right">
+            <div id="userInfo">   
+                <form>
+                <p><output>Статус: <span> @Model.user.Status</span></output></p>
+                <p><output>Дата рождения: <span> @Model.user.BirthDate</span></output><p/>
+                <p><output>О себе: <span> </span></output><p/>
+                <p><output>eMail: <span> @Model.user.eMail</span></output><p/>
+                </form>
+            </div>
+            <div id="divUserFriends">
+                @if (Model.Friends.Count != 0)
+                {
+
+                    @foreach (var user in @Model.Friends)
+                    {
+                        <div class="datadiv">
+                            <div class="mrgn center-align">
+                                <img src="@user.Image" class="ava" />
+                            </div>
+                            <div class="mrgn center-align">
+                                @user.GetFullName()
+                            </div>
+                            <div class="mrgn center-align">
+                                <form asp-controller="AccountManager" asp-action="Chat" asp-route-id="@user.Id" method="post">
+                                    <button type="submit" class="btn btn-sm btn-primary min-width-but">
+                                        Чат
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="mrgn center-align">
+                                <form asp-controller="AccountManager" asp-action="DeleteFriend" asp-route-id="@user.Id" method="post">
+                                    <button type="submit" class="btn btn-sm btn-primary min-width-but">
+                                        Удалить из друзей
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                    }
+                }
+                else
+                {
+                    <div>
+                        <label> У вас пока нет друзей.</label>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - AwesomeNet.Unit35 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>
