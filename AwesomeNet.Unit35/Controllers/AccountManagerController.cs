@@ -100,7 +100,7 @@ namespace AwesomeNet.Unit35.Controllers
 
             var model = new UserViewModel(result);
 
-            model.Friends = await GetAllFriend(model.user);
+            model.Friends = await GetAllFriend(model.User);
 
             return View("User", model);
         }
