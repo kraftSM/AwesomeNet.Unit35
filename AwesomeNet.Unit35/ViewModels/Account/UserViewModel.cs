@@ -10,7 +10,7 @@ namespace AwesomeNet.Unit35.ViewModels.Account
         public UserViewModel(User user)
         {
             User = user; 
-        }       
-
+        }
+        public List<User> Friends { get; set; }
     }
 }
