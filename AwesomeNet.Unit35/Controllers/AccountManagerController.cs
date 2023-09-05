@@ -11,7 +11,6 @@ using AwesomeNet.Unit35.ViewModels.Account;
 using AwesomeNet.Unit35.Data;
 using AwesomeNet.Unit35.Data.Repository;
 using AwesomeNet.Unit35.Data.UnitOfWork;
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -35,13 +34,8 @@ namespace AwesomeNet.Unit35.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [Route("Login")]
-        [HttpGet]
-        public IActionResult Login(string returnUrl = null)
-        {
-            return View(new LoginViewModel { ReturnUrl = returnUrl });
-        }
 
+        #region MyPage
         [Authorize]
         [Route("MyPage")]
         [HttpGet]
@@ -53,6 +47,22 @@ namespace AwesomeNet.Unit35.Controllers
             var model = new UserViewModel(infoAboutUser);         
             return View("User", model);
         }
+        #endregion
+
+        #region Login
+        [HttpGet]
+        public IActionResult Login(string returnUrl = null)
+        {
+            return View(new LoginViewModel { ReturnUrl = returnUrl });
+        }
+
+        [Route("Login")]
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View("Home/Login");
+        }
+
         [Route("Login")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -67,27 +77,17 @@ namespace AwesomeNet.Unit35.Controllers
                 if (result.Succeeded)
                 {
                     return RedirectToAction("UserPage", "AccountManager");
-                    //return RedirectToAction("MyPage", "AccountManager");
-
-                    //if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
-                    //{
-                    //    return Redirect(model.ReturnUrl);
-                    //}
-                    //else
-                    //{
-                    //    return RedirectToAction("Index", "Home");
-                    //}
                 }
                 else
                 {
                     ModelState.AddModelError("", "Неправильный логин и (или) пароль");
                 }
             }
-            return View("Views/Home/Index.cshtml");
+            return RedirectToAction("Index", "Home");
         }
+        #endregion
 
-
-
+        #region Logout
         [Route("Logout")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -96,12 +96,12 @@ namespace AwesomeNet.Unit35.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+        #endregion
 
+        #region UserPage
         ///<summary>
         ///метод для вызова страницы пользователя
         ///<summary>
-        ///
-
         [Authorize]
         [Route("UserPage")]
         [HttpGet]
@@ -115,17 +115,25 @@ namespace AwesomeNet.Unit35.Controllers
 
             model.Friends = await GetAllFriend(model.User);
 
-            //return View("User", model);
             return View("UserPage", model);
         }
+        #endregion
 
+        #region EditUser
         [Route("EditUser")]
         [HttpGet]
-        public IActionResult EditUser(EditUserViewModel editUserView)
+        public IActionResult EditUser(/*EditUserViewModel editUserView*/)
         {
-            
-            return View(editUserView);
+            var user = User;
+
+            var result = _userManager.GetUserAsync(user);
+
+            var editmodel = _mapper.Map<EditUserViewModel>(result.Result);
+
+            return View("EditUser", editmodel);
+            //return View(editUserView);
         }
+        #endregion
 
         [Authorize]
         [Route("Update")]
@@ -259,23 +267,23 @@ namespace AwesomeNet.Unit35.Controllers
             return repository.GetFriendsByUser(result);
         }
 
-        public UserViewModel RandUser()
+        [Route("Generate")]
+        [HttpGet]
+        public async Task<IActionResult> Generate()
         {
-            User user = new User();
-            
-            Random rRand = new Random();
-            string[] firstName = { "Ава", "Августа", "Галина", "Дарья", "Елена", "Зоя", "Камилла", "Лана", "Марина", "Олеся" };
-            string[] lastName = { "Иванова", "Сергеева", "Петрова", "Щукина", "Листьева", "Головкова", "Сидельникова", "Разумова", "Головач", "Титова" };
-            string[] middleName = { "Сергеевна", "Петровна", "Григорьевна", "Кирилловна", "Алексеевна", "Александровна", "Борисовна", "Аркадьевна", "Семёновна", "Дмитриевна" };
 
-            user.FirstName = $"{firstName[rRand.Next(0, middleName.Length - 1)]}";
-            user.MiddleName = $"{middleName[rRand.Next(middleName.Length - 1, 9)]}";
-            user.LastName = $"{lastName[rRand.Next(0, middleName.Length - 1)]}";
-            user.BirthDate = DateTime.Now;
-            //user.eMail = "наДеревнюКДедушке@mail.ru";
-            UserViewModel userVM = new UserViewModel(user);
+            var usergen = new GenetateUsers();
+            var userlist = usergen.Populate(35);
 
-            return userVM;
+            foreach (var user in userlist)
+            {
+                var result = await _userManager.CreateAsync(user, "123456");
+
+                if (!result.Succeeded)
+                    continue;
+            }
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

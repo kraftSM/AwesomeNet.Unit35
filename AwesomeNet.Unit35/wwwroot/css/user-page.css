@@ -2,7 +2,9 @@
     display: flex;
     padding: 0;
 }
-
+#FIO {
+    text-align: center;
+}
 /*Начало левыйDIV*/
 #left {
     /*border: 2px solid black;*/
