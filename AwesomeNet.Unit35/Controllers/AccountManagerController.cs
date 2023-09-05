@@ -109,9 +109,9 @@ namespace AwesomeNet.Unit35.Controllers
         {
             var user = User;
 
-            var result = await _userManager.GetUserAsync(user);
+            var userInfo = await _userManager.GetUserAsync(user);
 
-            var model = new UserViewModel(result);
+            var model = new UserViewModel(userInfo);
 
             model.Friends = await GetAllFriend(model.User);
 
@@ -163,7 +163,14 @@ namespace AwesomeNet.Unit35.Controllers
         [HttpPost]
         public async Task<IActionResult> UserList(string search)
         {
+            //var user = User;
+
+            //var userInfo = await _userManager.GetUserAsync(user);
+
+            //var model = new UserViewModel(userInfo); 
+            
             var model = await CreateSearch(search);
+
             return View("UserList", model);
         }
 
@@ -206,18 +213,29 @@ namespace AwesomeNet.Unit35.Controllers
 
         private async Task<SearchViewModel> CreateSearch(string search)
         {
+            
+
             var currentuser = User;
 
-            var result = await _userManager.GetUserAsync(currentuser);
+            var userInfo = await _userManager.GetUserAsync(currentuser);
 
-            var list = _userManager.Users.AsEnumerable().Where(x => x.GetFullName().ToLower().Contains(search.ToLower())).ToList();
+            var userSearchList =  _userManager.Users.AsEnumerable().ToList();
+
+            if (!string.IsNullOrEmpty(search))
+            { 
+                 var list = _userManager.Users.AsEnumerable()
+                    .Where(x => x.GetFullName().ToLower()
+                    .Contains(search.ToLower())).ToList();            
+            }
+            
+            
             var withfriend = await GetAllFriend();
 
             var data = new List<UserWithFriendExt>();
-            list.ForEach(x =>
+            userSearchList.ForEach(x =>
             {
                 var t = _mapper.Map<UserWithFriendExt>(x);
-                t.IsFriendWithCurrent = withfriend.Where(y => y.Id == x.Id || x.Id == result.Id).Count() != 0;
+                t.IsFriendWithCurrent = withfriend.Where(y => y.Id == x.Id || x.Id == userInfo.Id).Count() != 0;
                 data.Add(t);
             });
 

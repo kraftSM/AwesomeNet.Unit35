@@ -58,14 +58,16 @@
                 @*<p><output>eMail: <span> @Model.User.eMail</span></output><p/>*@
                 </form>
             </div>
+            <div class="mrgn center-align">
+                <form asp-controller="AccountManager" asp-action="UserList" asp-route-id="@Model.User.GetFullName()" method="post">
+                    <button type="submit" class="btn btn-sm btn-primary min-width-but">
+                        UserList
+                    </button>
+                </form>
+            </div>
+
             <div id="divUserFriends">
-                <div class="mrgn center-align">
-                    <form asp-controller="AccountManager" asp-action="UserList" asp-route-id="@Model.User.Email" method="post">
-                        <button type="submit" class="btn btn-sm btn-primary min-width-but">
-                            Чат
-                        </button>
-                    </form>
-                </div>
+                
                 @if (Model.Friends.Count != 0)
                 {
 
