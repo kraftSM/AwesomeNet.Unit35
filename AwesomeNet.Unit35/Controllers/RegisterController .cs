@@ -48,7 +48,7 @@ namespace AwesomeNet.Unit35.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("UserPage", "AccountManager");
                 }
                 else
                 {

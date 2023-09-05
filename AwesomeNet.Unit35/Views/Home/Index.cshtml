@@ -11,9 +11,17 @@
 }
 @if (SignInManager.IsSignedIn(User))
 {
-    <div>Hello @User.Identity!</div>
-    //редирект
-    @*ViewData["Title"] = "MyPage";*@
+    <div>
+        <h1>Hello @User.Identity.Name</h1>
+    </div>
+
+    <div class="topnav">
+        <div id="button">
+            <form>
+                <button method="get" type="submit" class="enter_submit" asp-controller="AccountManager" asp-action="UserPage">Продолжить</button>
+            </form>
+        </div>       
+    </div>
 }
 else
 {
@@ -27,14 +35,11 @@ else
             <img class="main-img" src="/img/husky_400.png" />@* *@
         </div>
 
-
-        
         <div class="main">
-
-            <!--a class="nav-link text-dark" asp-area="" asp-controller="AccountManager" asp-action="UserPage">Страница пользователя(Пока ссылка прямая)</a-->
             <partial name="Login" model="@Model.LoginView" />
             <partial name="Register" model="@Model.RegisterView" />
         </div>
+
     </div>
 
 }
