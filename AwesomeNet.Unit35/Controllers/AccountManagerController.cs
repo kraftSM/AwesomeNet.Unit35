@@ -162,13 +162,7 @@ namespace AwesomeNet.Unit35.Controllers
         [Route("UserList")]
         [HttpPost]
         public async Task<IActionResult> UserList(string search)
-        {
-            //var user = User;
-
-            //var userInfo = await _userManager.GetUserAsync(user);
-
-            //var model = new UserViewModel(userInfo); 
-            
+        {          
             var model = await CreateSearch(search);
 
             return View("UserList", model);
