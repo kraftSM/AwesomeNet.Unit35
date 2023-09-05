@@ -18,7 +18,7 @@ namespace AwesomeNet.Unit35.Extensions
             user.BirthDate = usereditvm.BirthDate;
             user.UserName = usereditvm.UserName;
             user.Status = usereditvm.Status;
-            user.About = usereditvm.About;
+            //user.About = usereditvm.About;
 
             return user;
         }

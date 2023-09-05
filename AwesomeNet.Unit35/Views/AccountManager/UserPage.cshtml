@@ -55,10 +55,17 @@
                 <p><output>Статус: <span> @Model.User.Status</span></output></p>
                 <p><output>Дата рождения: <span> @Model.User.BirthDate</span></output><p/>
                 <p><output>О себе: <span> </span></output><p/>
-                <p><output>eMail: <span> @Model.User.eMail</span></output><p/>
+                @*<p><output>eMail: <span> @Model.User.eMail</span></output><p/>*@
                 </form>
             </div>
             <div id="divUserFriends">
+                <div class="mrgn center-align">
+                    <form asp-controller="AccountManager" asp-action="UserList" asp-route-id="@Model.User.Email" method="post">
+                        <button type="submit" class="btn btn-sm btn-primary min-width-but">
+                            Чат
+                        </button>
+                    </form>
+                </div>
                 @if (Model.Friends.Count != 0)
                 {
 

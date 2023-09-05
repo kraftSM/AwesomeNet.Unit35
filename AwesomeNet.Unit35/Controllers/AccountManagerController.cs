@@ -67,6 +67,7 @@ namespace AwesomeNet.Unit35.Controllers
                 if (result.Succeeded)
                 {
                     return RedirectToAction("UserPage", "AccountManager");
+                    //return RedirectToAction("MyPage", "AccountManager");
 
                     //if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                     //{
@@ -114,7 +115,8 @@ namespace AwesomeNet.Unit35.Controllers
 
             model.Friends = await GetAllFriend(model.User);
 
-            return View("User", model);
+            //return View("User", model);
+            return View("UserPage", model);
         }
 
         [Route("EditUser")]
@@ -258,7 +260,7 @@ namespace AwesomeNet.Unit35.Controllers
             user.MiddleName = $"{middleName[rRand.Next(middleName.Length - 1, 9)]}";
             user.LastName = $"{lastName[rRand.Next(0, middleName.Length - 1)]}";
             user.BirthDate = DateTime.Now;
-            user.eMail = "наДеревнюКДедушке@mail.ru";
+            //user.eMail = "наДеревнюКДедушке@mail.ru";
             UserViewModel userVM = new UserViewModel(user);
 
             return userVM;

@@ -13,7 +13,7 @@ namespace AwesomeNet.Unit35.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
             Database.EnsureCreated(); 
-            Database.Migrate();
+            //Database.Migrate();
 
         }
         protected override void OnModelCreating(ModelBuilder builder)
