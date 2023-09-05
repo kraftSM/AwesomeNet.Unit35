@@ -1,5 +1,6 @@
 ﻿using AwesomeNet.Unit35.Models;
 using AwesomeNet.Unit35.ViewModels.Account;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -21,9 +22,9 @@ namespace AwesomeNet.Unit35.Controllers
 
 
         [Route("")]
-        [Route("[controller]/[action]")]        public IActionResult Index()
+        [Route("[controller]/[action]")] 
+        public IActionResult Index()
         {
-
             return View(new MainViewModel());
         }
 

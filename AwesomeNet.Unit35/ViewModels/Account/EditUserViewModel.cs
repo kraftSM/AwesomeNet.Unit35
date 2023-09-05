@@ -7,6 +7,8 @@ namespace AwesomeNet.Unit35.ViewModels.Account
 {
     public class EditUserViewModel
     {
+        [Required]
+        [Display(Name = "Идентификатор пользователя")]
         public string UserId { get; set; }
 
         [Display(Name = "Имя", Prompt = "Введите имя")]
@@ -28,7 +30,7 @@ namespace AwesomeNet.Unit35.ViewModels.Account
         public string Status { get; set; }
 
         [Display(Name = "О себе", Prompt = "Введите данные о себе")]
-        public string About { get; set; }
+        public string Info { get; set; }
 
         [Display(Name = "Email", Prompt = "my_mail@example.com")]
         public string eMail { get; set; }

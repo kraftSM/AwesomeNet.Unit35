@@ -25,16 +25,19 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <div backgroundColor="Blue">
-                        <h3>Это страница пользователя</h3>
-                        <h1>@Model.User.GetFullName()</h1>
-                    </div>
+                    @Html.Partial("_LoginPartial")
                 </div>
+                <!--partial name="_LoginPartial.cshtml" /--> @*так почему-то не работает*@
+                
             </div>
+            
         </nav>
+        
     </header>
+    <div id="FIO">
+        <h1 id="userFIO">@Model.User.GetFullName()</h1>
+    </div>
     <div id="body" class="container">
-
         <div id="left" class="">
             <div id="divPhotoAndEditButton">
                 <div id="divPhoto">
@@ -61,7 +64,7 @@
             <div class="mrgn center-align">
                 <form asp-controller="AccountManager" asp-action="UserList" asp-route-id="@Model.User.GetFullName()" method="post">
                     <button type="submit" class="btn btn-sm btn-primary min-width-but">
-                        UserList
+                        Найти пользователя
                     </button>
                 </form>
             </div>
