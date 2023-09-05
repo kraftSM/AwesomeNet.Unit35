@@ -2,6 +2,7 @@
     -ms-flex: 40%; /* IE10 */
     flex: 40%;
     padding: 20px;
+    text-align: center;
 }
 
 
@@ -11,11 +12,12 @@
     padding: 20px;
 }
 
-.row {
+.row1 {
     display: -ms-flexbox; /* IE10 */
     display: flex;
     -ms-flex-wrap: wrap; /* IE10 */
     flex-wrap: wrap;
+    position: relative;
 }
 
 .footer {

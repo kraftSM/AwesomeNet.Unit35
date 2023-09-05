@@ -3,14 +3,14 @@
 @{
     ViewData["Title"] = "Register";
 }
-@**@
+
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
 
-<h2>Регистрация нового пользователя шаг 1</h2>
+
 <div class="block-reg background-white">
     <h4 class="center">Впервые с нами?</h4>
-    <div class="center text-color-gray">Регистрация нового пользователя</div>
+    <div class="center text-color-gray">Регистрация нового пользователя. Шаг-1</div>
     <form class="frm" method="get" asp-controller="Register" asp-action="RegisterPart2">
         <div asp-validation-summary="ModelOnly"></div>
         <div>
@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="text-color-gray text-size_12">Дата рождения</div>
-       @**@
+
        <div class="mrgn center">
             <select asp-for="Date" class="form-control date_control" ID="ddlDay">
                 <option value="">@Model.Date</option>
@@ -47,13 +47,14 @@
             <span asp-validation-for="Year" class="text-danger"></span>
 
         </div>
-       
+
         <div class="center">
             <input class="btn_submit" type="submit" value="Продолжить регистрацию" />
         </div>
     </form>
 
-    @Model.Month @**@
+
+   @Model.Month
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
 
@@ -81,6 +82,6 @@
             ddl.options.add(opt);
         }
     </script>
-    
+
 </div>
 
