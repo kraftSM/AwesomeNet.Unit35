@@ -17,17 +17,19 @@
     </nav>
 
 </header>*@
-<form class="navbar-form navbar-right" role="search" style="position: relative; display: inline-flex;">
+@*<form class="navbar-form navbar-right" role="search" style="position: relative; display: inline-flex;" asp-area="" asp-controller="AccountManager" asp-action="UserList">
     <div class="form-group">
+        <i class="fa fa-search"></i>
         <input type="text" class="form-control" placeholder="Найти">
+        <button type="submit" class="btn btn-default">Submit</button>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-</form>
+</form>*@
 <div class="block-reg background-white">
     <div class="righ-align">
         <form asp-area="" asp-controller="AccountManager" asp-action="UserList">
             <i class="fa fa-search"></i>
             <input type="text" placeholder="Поиск" name="search">
+            <button type="submit" class="btn btn-default">Submit</button>
         </form>
     </div>
     @if (Model.UserList.Count != 0)
@@ -36,9 +38,8 @@
         @foreach (var user in @Model.UserList)
         {
             <div>
-                
-                @*<img class="userImg" src=@user.Image width="100">*@
-                <label class="userName">@user.GetFullName() <br />
+                <label class="userName">
+                    @user.GetFullName() <br />
                     @user.Status<br />
                 </label>
                 @if (!@user.IsFriendWithCurrent)
