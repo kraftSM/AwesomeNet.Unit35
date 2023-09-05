@@ -1,5 +1,4 @@
-using AwesomeNet.Unit35.Models;
-using System;
+﻿using AwesomeNet.Unit35.Models;
 using System.Collections.Generic;
 
 namespace AwesomeNet.Unit35.ViewModels.Account
@@ -8,12 +7,10 @@ namespace AwesomeNet.Unit35.ViewModels.Account
     {
         public User User { get; set; }
 
-        public List<User> Friends { get; set; }
-
         public UserViewModel(User user)
         {
-            User = user;
+            User = user; 
         }
-
+        public List<User> Friends { get; set; }
     }
 }

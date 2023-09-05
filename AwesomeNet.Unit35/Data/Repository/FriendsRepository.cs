@@ -1,4 +1,4 @@
-using AwesomeNet.Unit35.Models;
+﻿using AwesomeNet.Unit35.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,17 +11,19 @@ namespace AwesomeNet.Unit35.Data.Repository
         {
 
         }
+
         public void AddFriend(User target, User Friend)
         {
-            var friends = Set.AsEnumerable().FirstOrDefault(x => x.UserId == target.Id && x.CurrentFriendId == Friend.Id);
+            var friends = Set.AsEnumerable().FirstOrDefault(x => x.UserId == target.Id && x.userFriend.Id == Friend.Id);
+
             if (friends == null)
             {
                 var item = new Friend()
                 {
                     UserId = target.Id,
                     User = target,
-                    CurrentFriend = Friend,
-                    CurrentFriendId = Friend.Id,
+                    userFriend = Friend,
+                    userFriendId = Friend.Id,
                 };
 
                 Create(item);
@@ -30,16 +32,14 @@ namespace AwesomeNet.Unit35.Data.Repository
 
         public List<User> GetFriendsByUser(User target)
         {
-            var friends = Set.Include(x => x.CurrentFriend).AsEnumerable().Where(x => x.User.Id == target.Id).Select(x => x.CurrentFriend);
+            var friends = Set.Include(x => x.userFriend).AsEnumerable().Where(x => x.User.Id == target.Id).Select(x => x.userFriend);
 
             return friends.ToList();
         }
 
-
-
         public void DeleteFriend(User target, User Friend)
         {
-            var friends = Set.AsEnumerable().FirstOrDefault(x => x.UserId == target.Id && x.CurrentFriendId == Friend.Id);
+            var friends = Set.AsEnumerable().FirstOrDefault(x => x.UserId == target.Id && x.userFriend.Id == Friend.Id);
 
             if (friends != null)
             {

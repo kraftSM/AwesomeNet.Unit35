@@ -13,19 +13,16 @@ namespace AwesomeNet.Unit35.Models
         public DateTime BirthDate { get; set; }
         public string Image { get; set; }
         public string Status { get; set; }
-        public string About { get; set; }
-        public string eMail { get; set; }
- 
-        public User()
-        {
-            Image = "https://via.placeholder.com/500";
-            Status = "Ура! Я в соцсети!";
-            About = "Информация обо мне.";
-        }
-
+        public string Info { get; set; }
         public string GetFullName()
         {
-            return FirstName + " " + MiddleName + " " + LastName;
+            return " UserFullName: " + FirstName + " " + MiddleName + " " + LastName;
+        }
+        public User()
+        {
+            Image = "img/husky_400.png"; //Husky :)
+            Status = "Ура! Я в соцсети!";
+            Info = "Информация обо мне.";
         }
     }
 }

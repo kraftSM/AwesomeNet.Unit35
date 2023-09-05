@@ -17,9 +17,7 @@
 }
 else
 {
-
-    <div class="row1">
-
+    <div class="row">
         <div class="side">
             <div class="center">
                 Пользуйтесь нашей самой крутой соцсетью! Регистрируйтесь всего за 2 минуты, делитесь мыслями, находите новых друзей.
@@ -27,14 +25,11 @@ else
             <img class="main-img" src="/img/husky_400.png" />@* *@
         </div>
 
+    <div class="main">
+        <partial name="Login" model="Model.LoginView" /> @* *@
+        <partial name="Register" model="Model.RegisterView" />  @*   *@
+    </div>
 
-        
-        <div class="main">
-
-            <!--a class="nav-link text-dark" asp-area="" asp-controller="AccountManager" asp-action="UserPage">Страница пользователя(Пока ссылка прямая)</a-->
-            <partial name="Login" model="@Model.LoginView" />
-            <partial name="Register" model="@Model.RegisterView" />
-        </div>
     </div>
 
 }

@@ -20,7 +20,7 @@ using AwesomeNet.Unit35.Extensions;
 using AwesomeNet.Unit35.Models;
 using AwesomeNet.Unit35.Data;
 using AwesomeNet.Unit35.Data.UnitOfWork;
-using AwesomeNet.Unit35.Data.Repository;
+
 
 namespace AwesomeNet.Unit35
 {
@@ -43,11 +43,10 @@ namespace AwesomeNet.Unit35
             });
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
-
+            
             services
                 .AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connection))
                 .AddUnitOfWork()
-                .AddCustomRepository<Friend, FriendsRepository>()
                 .AddIdentity<User, IdentityRole>(opts => {
                     opts.Password.RequiredLength = 5;
                     opts.Password.RequireNonAlphanumeric = false;
@@ -55,7 +54,7 @@ namespace AwesomeNet.Unit35
                     opts.Password.RequireUppercase = false;
                     opts.Password.RequireDigit = false;
                 })
-                    .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
             services.AddControllersWithViews();
