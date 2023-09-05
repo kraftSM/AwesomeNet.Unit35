@@ -14,6 +14,8 @@ namespace AwesomeNet.Unit35.Models
 
     public string ReciverId { get; set; }
     public User Reciver { get; set; }
+
+     public DateTime MessageTimeMark { get; set; }
     }
 
 }
