@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Страница пользователя";
     Layout = null; //отключение стилей мастер-страниц, и теперь можно лепить свой дизайн.
-                   //Layout = "~/Views/Shared/_Layout.cshtml";-тогда будет дизай мастер страницы.
+                   //Layout = "~/Views/Shared/_Layout.cshtml";//-тогда будет дизай мастер страницы.
 }
 
 <!DOCTYPE html>
@@ -63,13 +63,14 @@
                 <p><output>eMail: <span> @Model.User.Email</span></output><p/>@**@
                 </form>
             </div>
-            <div class="mrgn center-align">
+
+            @*<div class="mrgn center-align">
                 <form asp-controller="AccountManager" asp-action="UserList" asp-route-id="@Model.User.GetFullName()" method="post">
                     <button type="submit" class="btn btn-sm btn-primary min-width-but">
                         Найти пользователя
                     </button>
                 </form>
-            </div>
+            </div>*@
 
             <div id="divUserFriends">
                 

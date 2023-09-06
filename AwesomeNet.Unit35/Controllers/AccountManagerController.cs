@@ -225,7 +225,7 @@ namespace AwesomeNet.Unit35.Controllers
 
             if (!string.IsNullOrEmpty(search))
             {
-                var list = _userManager.Users.AsEnumerable()
+                 userSearchList = _userManager.Users.AsEnumerable()
                    .Where(x => x.GetFullName().ToLower()
                    .Contains(search.ToLower())).ToList();
             }
