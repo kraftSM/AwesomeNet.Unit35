@@ -13,7 +13,16 @@
   - - Отправка сообщений друзьям
   
   # сделано
-  + Пакеты
-  + + Entity Framework Core 5.0.17
-  + + Entity Framework CoreSqlServer  5.0.17
-    + начальные шаги до  Задание 43.3.4
+  на 2023-09-02 21:00
+  - - Регистрация
+    - для упрощения тестирования требования к Mapp'ингу были сокращены (RegisterViewModel)
+    - есть запись  в БД
+  - - Авторизация
+    - есть LogIn, LogOut
+    - есть применение Подстилей (смена  надписей для пользователей после LogIn/LogOut)
+   - - Пакеты доставлены
+     +  AutoMapper 12.0.1
+     +  AspNetCore.Identity.Entity Framework Core 5.0.17
+     +  Entity Framework Core 5.0.17
+     +  Entity Framework CoreSqlServer  5.0.17
+  

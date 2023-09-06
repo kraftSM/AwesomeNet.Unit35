@@ -1,15 +1,26 @@
-using AwesomeNet.Unit35.Models;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+using Microsoft.EntityFrameworkCore;
+
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.HttpsPolicy;
+
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using AutoMapper;
+
+using AwesomeNet.Unit35.Extensions;
+using AwesomeNet.Unit35.Models;
+using AwesomeNet.Unit35.Data;
+using AwesomeNet.Unit35.Data.UnitOfWork;
+using AwesomeNet.Unit35.Data.Repository;
 
 namespace AwesomeNet.Unit35
 {
@@ -26,19 +37,30 @@ namespace AwesomeNet.Unit35
         public void ConfigureServices(IServiceCollection services)
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connection));
-
-            services.AddIdentity<User, IdentityRole>(opts =>
+            var mapperConfig = new MapperConfiguration((v) =>
             {
-                opts.Password.RequiredLength = 5;
-                opts.Password.RequireNonAlphanumeric = false;
-                opts.Password.RequireLowercase = false;
-                opts.Password.RequireUppercase = false;
-                opts.Password.RequireDigit = false;
-            }).AddEntityFrameworkStores<ApplicationDbContext>();
+                v.AddProfile(new MappingProfile());
+            });
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
+            services
+                .AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connection))
+                .AddUnitOfWork()
+                .AddCustomRepository<Friend, FriendsRepository>()
+                .AddCustomRepository<Message, MessageRepository>()
+                .AddIdentity<User, IdentityRole>(opts => {
+                    opts.Password.RequiredLength = 5;
+                    opts.Password.RequireNonAlphanumeric = false;
+                    opts.Password.RequireLowercase = false;
+                    opts.Password.RequireUppercase = false;
+                    opts.Password.RequireDigit = false;
+                })
+                    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
             services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +70,7 @@ namespace AwesomeNet.Unit35
             {
                 app.UseDeveloperExceptionPage();
             }
+
             else
             {
                 app.UseExceptionHandler("/Home/Error");
@@ -55,7 +78,6 @@ namespace AwesomeNet.Unit35
             app.UseStaticFiles();
 
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -64,6 +86,7 @@ namespace AwesomeNet.Unit35
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

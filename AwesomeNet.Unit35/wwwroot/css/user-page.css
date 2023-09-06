@@ -1,0 +1,65 @@
+﻿#body {
+    display: flex;
+    padding: 0;
+}
+#FIO {
+    text-align: center;
+}
+/*Начало левыйDIV*/
+#left {
+    /*border: 2px solid black;*/
+    margin: 0;
+}
+#divPhoto {
+    background-color: darkgray;
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+    width: 500px;
+    height: 500px;
+    /*border: 2px solid black;*/
+}
+#button {
+    padding:0;
+}
+.enter_submit {
+    margin: 0;
+}
+/*Конец левыйDIV*/
+
+/*Начало правыйDIV*/
+#right {
+    /*border: 2px solid black;*/
+    position: relative;
+    width: -moz-available;
+    margin: 0;
+    position: relative;
+    padding-left: 4%;
+}
+#userInfo {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: none;
+    border-top: 1px grey dashed;
+    border-bottom: 1px grey dashed;
+}
+#divUserFriends {
+    margin-top: 10px;
+    border: none;
+    border-top: 1px grey dashed;
+    border-bottom: 1px grey dashed;
+}
+/*Конец правыйDIV*/
+
+/*Начало Редактирование*/
+#bodyReg {
+
+}
+/*Конец Редактирование*/
+
+/*начало chat*/
+#Chat {
+
+}
+/*конец chat*/
+
