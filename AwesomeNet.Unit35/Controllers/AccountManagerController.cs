@@ -44,7 +44,7 @@ namespace AwesomeNet.Unit35.Controllers
             var user = User;
             var infoAboutUser = await _userManager.GetUserAsync(user);
 
-            var model = new UserViewModel(infoAboutUser);         
+            var model = new UserViewModel(infoAboutUser);
             return View("User", model);
         }
         #endregion
@@ -170,7 +170,7 @@ namespace AwesomeNet.Unit35.Controllers
         [Route("UserList")]
         [HttpPost]
         public async Task<IActionResult> UserList(string search)
-        {          
+        {
             var model = await CreateSearch(search);
 
             return View("UserList", model);
@@ -215,22 +215,22 @@ namespace AwesomeNet.Unit35.Controllers
 
         private async Task<SearchViewModel> CreateSearch(string search)
         {
-            
+
 
             var currentuser = User;
 
             var userInfo = await _userManager.GetUserAsync(currentuser);
 
-            var userSearchList =  _userManager.Users.AsEnumerable().ToList();
+            var userSearchList = _userManager.Users.AsEnumerable().ToList();
 
             if (!string.IsNullOrEmpty(search))
-            { 
-                 var list = _userManager.Users.AsEnumerable()
-                    .Where(x => x.GetFullName().ToLower()
-                    .Contains(search.ToLower())).ToList();            
+            {
+                var list = _userManager.Users.AsEnumerable()
+                   .Where(x => x.GetFullName().ToLower()
+                   .Contains(search.ToLower())).ToList();
             }
-            
-            
+
+
             var withfriend = await GetAllFriend();
 
             var data = new List<UserWithFriendExt>();
@@ -266,7 +266,7 @@ namespace AwesomeNet.Unit35.Controllers
 
             return repository.GetFriendsByUser(result);
         }
-
+        #region Generate
         [Route("Generate")]
         [HttpGet]
         public async Task<IActionResult> Generate()
@@ -284,6 +284,96 @@ namespace AwesomeNet.Unit35.Controllers
             }
 
             return RedirectToAction("Index", "Home");
+        }
+        #endregion
+
+        #region Chat
+        [Route("Chat")]
+        [HttpGet]
+        public async Task<IActionResult> Chat()
+        {
+
+            var id = Request.Query["id"];
+
+            var model = await GenerateChat(id);
+            return View("Chat", model);
+            //return PartialView("Chat", model);
+        }
+
+        [Route("Chat")]
+        [HttpPost]
+        public async Task<IActionResult> Chat(string id)
+        {
+            var currentuser = User;
+
+            var result = await _userManager.GetUserAsync(currentuser);
+            var friend = await _userManager.FindByIdAsync(id);
+
+            var repository = _unitOfWork.GetRepository<Message>() as MessageRepository;
+
+            var mess = repository.GetMessages(result, friend);
+
+            var model = new ChatViewModel()
+            {
+                You = result,
+                ToWhom = friend,
+                History = mess.OrderBy(x => x.Id).ToList(),
+            };
+            return View("Chat", model);
+            //return PartialView("Chat", model);
+        }
+
+        private async Task<ChatViewModel> GenerateChat(string id)
+        {
+            var currentuser = User;
+
+            var result = await _userManager.GetUserAsync(currentuser);
+            var friend = await _userManager.FindByIdAsync(id);
+
+
+            var repository = _unitOfWork.GetRepository<Message>() as MessageRepository;
+
+            var mess = repository.GetMessages(result, friend);
+
+            var model = new ChatViewModel()
+            {
+                You = result,
+                ToWhom = friend,
+                History = mess.OrderBy(x => x.Id).ToList(),
+            };
+
+            return model;
+        }
+        #endregion
+
+        [Route("NewMessage")]
+        [HttpPost]
+        public async Task<IActionResult> NewMessage(string id, ChatViewModel chat)
+        {
+            var currentuser = User;
+
+            var result = await _userManager.GetUserAsync(currentuser);
+            var friend = await _userManager.FindByIdAsync(id);
+
+            var repository = _unitOfWork.GetRepository<Message>() as MessageRepository;
+
+            var item = new Message()
+            {
+                Sender = result,
+                Recipient = friend,
+                Text = chat.NewMessage.Text,
+            };
+            repository.Create(item);
+
+            var mess = repository.GetMessages(result, friend);
+
+            var model = new ChatViewModel()
+            {
+                You = result,
+                ToWhom = friend,
+                History = mess.OrderBy(x => x.Id).ToList(),
+            };
+            return View("Chat", model);
         }
     }
 }

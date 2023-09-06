@@ -10,6 +10,7 @@ namespace AwesomeNet.Unit35.Data
     public class ApplicationDbContext : IdentityDbContext<User>
     {
         public DbSet<User> Users { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
             Database.EnsureCreated(); 
@@ -20,6 +21,8 @@ namespace AwesomeNet.Unit35.Data
         {
             base.OnModelCreating(builder);
             builder.ApplyConfiguration(new FriendConfiguration());
+            builder.ApplyConfiguration(new MessageConfuiguration());
+            
         }
     }
 }
