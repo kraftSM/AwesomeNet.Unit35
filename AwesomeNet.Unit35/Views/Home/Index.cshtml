@@ -11,6 +11,10 @@
 }
 @if (SignInManager.IsSignedIn(User))
 {
+    {
+        <a asp-area="" asp-controller="AccountManager" asp-action="UserPage"> -> To user UserPage</a>
+    }   
+        
     <div>
         <h1>Hello @User.Identity.Name</h1>
     </div>
@@ -25,12 +29,16 @@
         </div>       
     </div>
     
-    //avto редирект  так не сработало
-   @* ViewData["Title"] = "UserPage";*@
+    @*//avto редирект  так не сработало
+   ViewData["Title"] = "UserPage";*@
 }
 else
 {
+    {
+        <a asp-area="" asp-controller="Home" asp-action="Index">SocialNetwork</a>
+    }
 
+    
     <div class="row1">
 
         <div class="side">
