@@ -55,8 +55,7 @@ namespace AwesomeNet.Unit35
                     opts.Password.RequireLowercase = false;
                     opts.Password.RequireUppercase = false;
                     opts.Password.RequireDigit = false;
-                })
-                    .AddEntityFrameworkStores<ApplicationDbContext>();
+                }).AddEntityFrameworkStores<ApplicationDbContext>();
 
 
             services.AddControllersWithViews();
