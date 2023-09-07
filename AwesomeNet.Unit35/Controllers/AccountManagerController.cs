@@ -359,6 +359,7 @@ namespace AwesomeNet.Unit35.Controllers
 
             var item = new Message()
             {
+                TimeStamp = DateTime.Now, 
                 Sender = result,
                 Recipient = friend,
                 Text = chat.NewMessage.Text,

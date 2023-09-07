@@ -23,6 +23,7 @@
             @foreach (var message in @Model.History)
             {
                 <div>
+                    <label> @message.TimeStamp:</label>
                     <label> @message.Sender.FirstName:</label>
                     @message.Text
                 </div>
