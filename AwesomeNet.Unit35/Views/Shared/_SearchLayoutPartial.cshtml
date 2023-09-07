@@ -1,0 +1,7 @@
+﻿﻿<div class="search-container">
+    <form asp-area="" asp-controller="AccountManager" asp-action="UserList" asp-route-id="@Model.User.GetFullName()" method="post">
+        <i class="fa fa-search"></i>
+        <input type="text" placeholder="Поиск..." name="search">
+        <button type="submit" class="btn btn-sm btn-primary min-width-but">Найти пользователя</button>
+    </form>
+</div>

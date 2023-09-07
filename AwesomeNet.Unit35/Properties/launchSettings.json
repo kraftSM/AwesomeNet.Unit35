@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "AwesomeNet.Unit35": {
+    "AwesomeNet": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,
