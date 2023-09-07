@@ -3,6 +3,7 @@ using AwesomeNet.Unit35.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 
 namespace AwesomeNet.Unit35.Data
@@ -19,6 +20,8 @@ namespace AwesomeNet.Unit35.Data
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<IdentityUser>()
+                .ToTable("AspNetUsers", t => t.ExcludeFromMigrations()); 
             base.OnModelCreating(builder);
             builder.ApplyConfiguration(new FriendConfiguration());
             builder.ApplyConfiguration(new MessageConfuiguration());
