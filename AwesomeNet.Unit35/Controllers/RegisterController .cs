@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using AwesomeNet.Unit35.ViewModels.Account;
-using AwesomeNet.Unit35.Models;
+using AwesomeNet.Front.ViewModels.Account;
+using AwesomeNet.Repository.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using AutoMapper;
-using AwesomeNet.Unit35.Data.UnitOfWork;
+using AwesomeNet.Repository.Data.UnitOfWork;
 
 namespace AwesomeNet.Unit35.Controllers
 {

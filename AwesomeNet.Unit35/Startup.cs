@@ -17,10 +17,12 @@ using Microsoft.Extensions.Logging;
 using AutoMapper;
 
 using AwesomeNet.Unit35.Extensions;
-using AwesomeNet.Unit35.Models;
-using AwesomeNet.Unit35.Data;
-using AwesomeNet.Unit35.Data.UnitOfWork;
-using AwesomeNet.Unit35.Data.Repository;
+using AwesomeNet.Repository.Models;
+using AwesomeNet.Repository.Data;
+using AwesomeNet.Repository.Data.Repository;
+using AwesomeNet.Repository.Data.UnitOfWork;
+using AwesomeNet.Front;
+
 
 namespace AwesomeNet.Unit35
 {

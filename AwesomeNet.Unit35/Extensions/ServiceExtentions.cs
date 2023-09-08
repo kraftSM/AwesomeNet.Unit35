@@ -1,5 +1,6 @@
-﻿using AwesomeNet.Unit35.Data.Repository;
-using AwesomeNet.Unit35.Data.UnitOfWork;
+﻿using AwesomeNet.Repository.Data.Repository;
+using AwesomeNet.Repository.Data.UnitOfWork;
+
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AwesomeNet.Unit35.Extensions

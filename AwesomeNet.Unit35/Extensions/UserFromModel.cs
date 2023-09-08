@@ -1,5 +1,5 @@
-﻿using AwesomeNet.Unit35.Models;
-using AwesomeNet.Unit35.ViewModels.Account;
+﻿using AwesomeNet.Repository.Models;
+using AwesomeNet.Front.ViewModels.Account;
 
 namespace AwesomeNet.Unit35.Extensions
 {

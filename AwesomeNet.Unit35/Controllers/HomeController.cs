@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using AwesomeNet.Unit35.Models;
-using AwesomeNet.Unit35.ViewModels.Account;
+using AwesomeNet.Repository.Models;
+using AwesomeNet.Front.ViewModels.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

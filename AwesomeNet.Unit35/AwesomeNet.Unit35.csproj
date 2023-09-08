@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Models\RegisterViewModel.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.17" />
@@ -18,6 +14,16 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AwesomeFront\Awesome.Front.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AwesomeNet.Repository">
+      <HintPath>..\AwesomeRepository\bin\Debug\net5.0\AwesomeNet.Repository.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

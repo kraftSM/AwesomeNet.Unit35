@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-using AutoMapper;
-
-using AwesomeNet.Unit35.Models;
-using AwesomeNet.Unit35.ViewModels;
-using AwesomeNet.Unit35.ViewModels.Account;
-using AwesomeNet.Unit35.Data;
-using AwesomeNet.Unit35.Data.Repository;
-using AwesomeNet.Unit35.Data.UnitOfWork;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
+
+using AwesomeNet.Repository.Data.UnitOfWork;
+using AwesomeNet.Repository.Data.Repository;
+using AwesomeNet.Repository.Models;
+using AwesomeNet.AwesomeNet.Repository;
+using AwesomeNet.Repository.Data;
+
+using AwesomeNet.Front.ViewModels;
+using AwesomeNet.Front.ViewModels.Account;
+
 using AwesomeNet.Unit35.Extensions;
 
 namespace AwesomeNet.Unit35.Controllers
@@ -272,7 +275,7 @@ namespace AwesomeNet.Unit35.Controllers
         public async Task<IActionResult> Generate()
         {
 
-            var usergen = new GenetateUsers();
+            var usergen = new GenerateUsers();
             var userlist = usergen.Populate(35);
 
             foreach (var user in userlist)
