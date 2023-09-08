@@ -1,6 +1,14 @@
 # AwesomeNet.Unit35
 
 - первая версия  (похоже рабочая версия)
+  # сделано   на 2023-09-08 16:15 
+- По дополнительному требованию ментора - проект разбит на 3 части результат выгружен в отдельную ветка = dev-DLL
+- ++ Split to 3 Project -
+   + AwesomeNet.Unit35 = Main
+   + AwesomeNet.Front  - ViewModels+Mapping  = FrontEnd DLL
+   + AwesomeNet.Repository = BackEnd DLL
+   +   - - Models - SQL - Repository -
+         -         -- Migrations
   # сделано   на 2023-09-07 16:15
  - Глобальные задачи
   - - Регистрация
