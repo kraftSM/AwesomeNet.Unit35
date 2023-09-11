@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AwesomeNet.Unit35.ViewModels.Account
+namespace AwesomeNet.ViewModels.Account
 {
     public class MessageViewModel
     {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
-namespace AwesomeNet.Unit35.ViewModels
+namespace AwesomeNet.ViewModels
 {
     public enum Months
     {

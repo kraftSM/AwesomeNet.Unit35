@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AwesomeNet.Unit35.ViewModels.Account
+namespace AwesomeNet.ViewModels.Account
 {
 
     public class RegisterViewModel

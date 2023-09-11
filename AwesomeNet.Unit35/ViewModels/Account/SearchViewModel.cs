@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AwesomeNet.Unit35.ViewModels.Account
+namespace AwesomeNet.ViewModels.Account
 {
     public class SearchViewModel
     {

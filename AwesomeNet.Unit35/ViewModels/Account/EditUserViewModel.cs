@@ -1,9 +1,9 @@
-﻿using AwesomeNet.Unit35.Models;
+﻿using AwesomeNet.BLL.Models;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
-namespace AwesomeNet.Unit35.ViewModels.Account
+namespace AwesomeNet.ViewModels.Account
 {
     public class EditUserViewModel
     {

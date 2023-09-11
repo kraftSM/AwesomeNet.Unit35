@@ -1,6 +1,6 @@
-﻿using AwesomeNet.Unit35.Models;
+﻿using AwesomeNet.BLL.Models;
 
-namespace AwesomeNet.Unit35.ViewModels.Account
+namespace AwesomeNet.ViewModels.Account
 {
     public class UserWithFriendExt : User
     {

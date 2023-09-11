@@ -1,8 +1,8 @@
-﻿using AwesomeNet.Unit35.Models;
+﻿using AwesomeNet.BLL.Models;
 using System;
 using System.Collections.Generic;
 
-namespace AwesomeNet.Unit35.ViewModels.Account
+namespace AwesomeNet.ViewModels.Account
 {
     public class ChatViewModel
     {

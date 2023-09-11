@@ -15,12 +15,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using AutoMapper;
-
-using AwesomeNet.Unit35.Extensions;
-using AwesomeNet.Unit35.Models;
-using AwesomeNet.Unit35.Data;
-using AwesomeNet.Unit35.Data.UnitOfWork;
-using AwesomeNet.Unit35.Data.Repository;
+using AwesomeNet.BLL.Data.UnitOfWork;
+using AwesomeNet.BLL;
+using AwesomeNet.BLL.Data;
+using AwesomeNet.BLL.Data.Repository;
+using AwesomeNet.BLL.Models;
+using AwesomeNet.BLL.Extensions;
 
 namespace AwesomeNet.Unit35
 {
