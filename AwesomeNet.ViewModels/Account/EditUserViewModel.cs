@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
-namespace AwesomeNet.Front.ViewModels.Account
+namespace AwesomeNet.ViewModels.Account
 {
     public class EditUserViewModel
     {

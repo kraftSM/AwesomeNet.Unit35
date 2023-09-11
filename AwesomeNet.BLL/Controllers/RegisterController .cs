@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using AwesomeNet.Front.ViewModels.Account;
+using AwesomeNet.ViewModels.Account;
 using AwesomeNet.Repository.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace AwesomeNet.Unit35.BLL.Controllers
+namespace AwesomeNet.CNTR.Controllers
 {
     public class RegisterController : Controller
     {

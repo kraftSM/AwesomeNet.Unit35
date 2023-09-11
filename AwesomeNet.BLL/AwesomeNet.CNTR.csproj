@@ -12,7 +12,7 @@
 	
  <ItemGroup>
 	<ProjectReference Include="..\AwesomeRepository\AwesomeNet.Repository.csproj" />
-	<ProjectReference Include="..\AwesomeFront\AwesomeNet.Front.csproj" />
+	<ProjectReference Include="..\AwesomeNet.ViewModels\AwesomeNet.ViewModels.csproj"/> 
  </ItemGroup>
 	
 </Project>

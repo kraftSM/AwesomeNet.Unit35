@@ -17,8 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AwesomeFront\AwesomeNet.Front.csproj" />
-	<ProjectReference Include="..\AwesomeNet.BLL\AwesomeNet.BLL.csproj" />	  
+	<ProjectReference Include="..\AwesomeNet.BLL\AwesomeNet.CNTR.csproj" />
+	<ProjectReference Include="..\AwesomeNet.ViewModels\AwesomeNet.ViewModels.csproj" />
+	<ProjectReference Include="..\AwesomeRepository\AwesomeNet.Repository.csproj" />	  
   </ItemGroup>
 
   <ItemGroup>

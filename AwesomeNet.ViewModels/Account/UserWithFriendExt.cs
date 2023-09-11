@@ -1,6 +1,6 @@
 ﻿using AwesomeNet.Repository.Models;
 
-namespace AwesomeNet.Front.ViewModels.Account
+namespace AwesomeNet.ViewModels.Account
 {
     public class UserWithFriendExt : User
     {

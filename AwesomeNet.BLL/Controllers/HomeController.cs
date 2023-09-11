@@ -11,10 +11,10 @@ using static System.Collections.Specialized.BitVector32;
 
 
 using AwesomeNet.Repository.Models;
-using AwesomeNet.Front.ViewModels.Account;
+using AwesomeNet.ViewModels.Account;
 using Microsoft.AspNetCore.Identity;
 
-namespace AwesomeNet.BLL.Controllers
+namespace AwesomeNet.CNTR.Controllers
 {
     public class HomeController : Controller
     {

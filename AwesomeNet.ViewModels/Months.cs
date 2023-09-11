@@ -1,9 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
-namespace AwesomeNet.Unit35.ViewModels
-{
-    public enum Months
+namespace AwesomeNet.ViewModels
+{    public enum Months
     {
         [Display(Name = "Январь")]
         Jan = 1,

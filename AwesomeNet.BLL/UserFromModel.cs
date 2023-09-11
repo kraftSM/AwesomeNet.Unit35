@@ -1,7 +1,7 @@
-﻿using AwesomeNet.Front.ViewModels.Account;
+﻿using AwesomeNet.ViewModels.Account;
 using AwesomeNet.Repository.Models;
 
-namespace AwesomeNet.BLL
+namespace AwesomeNet.CNTR
 {
     /// <summary>
     /// класс, который позволяет получить из вьюмодели модель пользователя
