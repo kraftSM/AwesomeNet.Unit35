@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System;
 
-namespace AwesomeNet.AwesomeNet.Repository
+namespace AwesomeNet.Repository.Data
 {
     public class GenerateUsers
     {

@@ -1,25 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using AutoMapper;
-
-using AwesomeNet.Repository.Data.UnitOfWork;
-using AwesomeNet.Repository.Data.Repository;
-using AwesomeNet.Repository.Models;
-using AwesomeNet.AwesomeNet.Repository;
-using AwesomeNet.Repository.Data;
+﻿using AutoMapper;
 
 using AwesomeNet.Front.ViewModels;
 using AwesomeNet.Front.ViewModels.Account;
 
-using AwesomeNet.Unit35.Extensions;
 
-namespace AwesomeNet.Unit35.Controllers
+using AwesomeNet.Repository.Models;
+using AwesomeNet.Repository.Data;
+using AwesomeNet.Repository.Data.Repository;
+using AwesomeNet.Repository.Data.UnitOfWork;
+
+using AwesomeNet.Repository.Extensions;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace AwesomeNet.BLL.Controllers
 {
     public class AccountManagerController : Controller
     {
@@ -136,7 +134,6 @@ namespace AwesomeNet.Unit35.Controllers
             return View("EditUser", editmodel);
             //return View(editUserView);
         }
-        #endregion
 
         [Authorize]
         [Route("Update")]
@@ -165,7 +162,7 @@ namespace AwesomeNet.Unit35.Controllers
                 return View("EditUser", model);
             }
         }
-
+        #endregion
 
         /// <summary>
         /// Метод для подключения поиска пользователей
@@ -228,9 +225,9 @@ namespace AwesomeNet.Unit35.Controllers
 
             if (!string.IsNullOrEmpty(search))
             {
-                 userSearchList = _userManager.Users.AsEnumerable()
-                   .Where(x => x.GetFullName().ToLower()
-                   .Contains(search.ToLower())).ToList();
+                userSearchList = _userManager.Users.AsEnumerable()
+                  .Where(x => x.GetFullName().ToLower()
+                  .Contains(search.ToLower())).ToList();
             }
 
 

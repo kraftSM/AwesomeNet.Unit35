@@ -1,7 +1,7 @@
-﻿using AwesomeNet.Repository.Models;
-using AwesomeNet.Front.ViewModels.Account;
+﻿using AwesomeNet.Front.ViewModels.Account;
+using AwesomeNet.Repository.Models;
 
-namespace AwesomeNet.Unit35.Extensions
+namespace AwesomeNet.BLL
 {
     /// <summary>
     /// класс, который позволяет получить из вьюмодели модель пользователя

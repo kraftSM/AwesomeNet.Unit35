@@ -1,27 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using Microsoft.EntityFrameworkCore;
-
+using AutoMapper;
+using AwesomeNet.Front;
+using AwesomeNet.Repository.Data;
+using AwesomeNet.Repository.Data.Repository;
+using AwesomeNet.Repository.Models;
+using AwesomeNet.Repository.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.HttpsPolicy;
-
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using AutoMapper;
-
-using AwesomeNet.Unit35.Extensions;
-using AwesomeNet.Repository.Models;
-using AwesomeNet.Repository.Data;
-using AwesomeNet.Repository.Data.Repository;
-using AwesomeNet.Repository.Data.UnitOfWork;
-using AwesomeNet.Front;
 
 
 namespace AwesomeNet.Unit35
@@ -51,7 +40,8 @@ namespace AwesomeNet.Unit35
                 .AddUnitOfWork()
                 .AddCustomRepository<Friend, FriendsRepository>()
                 .AddCustomRepository<Message, MessageRepository>()
-                .AddIdentity<User, IdentityRole>(opts => {
+                .AddIdentity<User, IdentityRole>(opts =>
+                {
                     opts.Password.RequiredLength = 5;
                     opts.Password.RequireNonAlphanumeric = false;
                     opts.Password.RequireLowercase = false;

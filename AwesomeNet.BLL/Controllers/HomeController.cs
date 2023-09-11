@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using AwesomeNet.Repository.Models;
-using AwesomeNet.Front.ViewModels.Account;
-using Microsoft.AspNetCore.Identity;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,7 +9,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using static System.Collections.Specialized.BitVector32;
 
-namespace AwesomeNet.Unit35.Controllers
+
+using AwesomeNet.Repository.Models;
+using AwesomeNet.Front.ViewModels.Account;
+using Microsoft.AspNetCore.Identity;
+
+namespace AwesomeNet.BLL.Controllers
 {
     public class HomeController : Controller
     {

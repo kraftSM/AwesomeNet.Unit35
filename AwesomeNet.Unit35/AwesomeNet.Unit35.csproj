@@ -17,11 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AwesomeFront\Awesome.Front.csproj" />
+    <ProjectReference Include="..\AwesomeFront\AwesomeNet.Front.csproj" />
+	<ProjectReference Include="..\AwesomeNet.BLL\AwesomeNet.BLL.csproj" />	  
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="AwesomeNet.Repository">
+    <Reference Include="..\AwesomeNet.Repository">
       <HintPath>..\AwesomeRepository\bin\Debug\net5.0\AwesomeNet.Repository.dll</HintPath>
     </Reference>
   </ItemGroup>

@@ -3,7 +3,7 @@ using AwesomeNet.Repository.Data.UnitOfWork;
 
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AwesomeNet.Unit35.Extensions
+namespace AwesomeNet.Repository.Extensions
 {
     public static class ServiceExtentions
     {
