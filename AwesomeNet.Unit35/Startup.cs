@@ -1,5 +1,5 @@
 using AutoMapper;
-using AwesomeNet.Front;
+using AwesomeNet.ViewModels;
 using AwesomeNet.Repository.Data;
 using AwesomeNet.Repository.Data.Repository;
 using AwesomeNet.Repository.Models;
@@ -13,7 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 
-namespace AwesomeNet.Unit35
+namespace AwesomeNet.Main
 {
     public class Startup
     {

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 
-using AwesomeNet.ViewModels;
-using AwesomeNet.ViewModels.Account;
+using AwesomeNet.Front.ViewModels;
+using AwesomeNet.Front.ViewModels.Account;
 
 
 using AwesomeNet.Repository.Models;
@@ -16,9 +16,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AwesomeNet.CNTR.Convertion;
 
-namespace AwesomeNet.CNTR.Controllers
+namespace AwesomeNet.BLL.Controllers
 {
     public class AccountManagerController : Controller
     {

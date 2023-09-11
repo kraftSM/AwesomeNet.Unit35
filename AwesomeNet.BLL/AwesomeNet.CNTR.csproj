@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+  </ItemGroup>
+	
+ <ItemGroup>
+	<ProjectReference Include="..\AwesomeNet.ViewModels\AwesomeNet.ViewModels.csproj" />
+	<ProjectReference Include="..\AwesomeRepository\AwesomeNet.Repository.csproj" />
+ </ItemGroup>
+	
+</Project>

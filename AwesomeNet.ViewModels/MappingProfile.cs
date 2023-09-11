@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using AwesomeNet.Repository.Models;
-using AwesomeNet.Front.ViewModels.Account;
+using AwesomeNet.ViewModels.Account;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AwesomeNet.Front
+namespace AwesomeNet.ViewModels
 {
     public class MappingProfile : Profile
     {
